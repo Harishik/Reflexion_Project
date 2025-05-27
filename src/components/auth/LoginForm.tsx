@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../stores/authStore';
+import { Mail, Lock, Loader2 } from 'lucide-react';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -38,67 +39,82 @@ const LoginForm = () => {
   };
   
   return (
-    <div className="max-w-md w-full space-y-8">
+    <div className="auth-card">
       <div className="text-center">
         <h2 className="text-3xl font-bold text-gray-900">Welcome back</h2>
         <p className="mt-2 text-gray-600">Sign in to continue your reflection journey</p>
       </div>
       
-      <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+      <form className="space-y-6" onSubmit={handleSubmit}>
         {error && (
-          <div className="p-3 bg-error-50 text-error-700 rounded-md text-sm">
+          <div className="p-3 bg-error-50 text-error-700 rounded-md text-sm border border-error-200">
             {error}
           </div>
         )}
         
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-            Email
+          <label htmlFor="email" className="input-label">
+            Email address
           </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            className="input"
-            placeholder="you@example.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            disabled={isLoading}
-          />
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <Mail className="h-5 w-5 text-gray-400" />
+            </div>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              className="input pl-10"
+              placeholder="you@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={isLoading}
+            />
+          </div>
         </div>
         
         <div>
-          <div className="flex items-center justify-between mb-1">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+          <div className="flex items-center justify-between mb-1.5">
+            <label htmlFor="password" className="input-label">
               Password
             </label>
-            <a href="#" className="text-sm text-primary-600 hover:text-primary-500">
+            <Link to="/forgot-password" className="text-sm text-primary-600 hover:text-primary-500">
               Forgot password?
-            </a>
+            </Link>
           </div>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            required
-            className="input"
-            placeholder="••••••••"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            disabled={isLoading}
-          />
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <Lock className="h-5 w-5 text-gray-400" />
+            </div>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              required
+              className="input pl-10"
+              placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              disabled={isLoading}
+            />
+          </div>
         </div>
         
-        <div>
-          <button
-            type="submit"
-            className="w-full btn-primary"
-            disabled={isLoading}
-          >
-            {isLoading ? 'Signing in...' : 'Sign in'}
-          </button>
-        </div>
+        <button
+          type="submit"
+          className="btn-primary w-full flex items-center justify-center"
+          disabled={isLoading}
+        >
+          {isLoading ? (
+            <>
+              <Loader2 className="animate-spin -ml-1 mr-2 h-5 w-5" />
+              Signing in...
+            </>
+          ) : (
+            'Sign in'
+          )}
+        </button>
       </form>
       
       <div className="text-center">

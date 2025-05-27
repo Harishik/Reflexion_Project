@@ -1,16 +1,17 @@
 import { Link } from 'react-router-dom';
 import LoginForm from '../components/auth/LoginForm';
 import { motion } from 'framer-motion';
+import { BookOpen } from 'lucide-react';
 
 const Login = () => {
   return (
-    <div className="min-h-screen flex">
-      <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 bg-white">
+    <div className="auth-container">
+      <div className="auth-form-container">
         <div className="mx-auto w-full max-w-md">
-          <div className="text-center">
-            <Link to="/" className="inline-flex items-center mb-8">
-              <div className="h-10 w-10 bg-primary text-white rounded flex items-center justify-center">
-                <span className="font-semibold text-lg">R</span>
+          <div className="text-center mb-8">
+            <Link to="/" className="inline-flex items-center">
+              <div className="h-10 w-10 bg-primary text-white rounded-lg flex items-center justify-center shadow-md">
+                <BookOpen className="h-6 w-6" />
               </div>
               <span className="ml-2 text-2xl font-bold text-gray-900">Reflexion</span>
             </Link>
@@ -24,9 +25,9 @@ const Login = () => {
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
-        className="hidden lg:block lg:flex-1 relative"
+        className="auth-hero"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-secondary-900 flex items-center justify-center">
+        <div className="absolute inset-0 flex items-center justify-center">
           <div className="max-w-2xl p-12 text-white">
             <h2 className="text-4xl font-bold mb-6">
               Develop critical thinking through reflective journaling
