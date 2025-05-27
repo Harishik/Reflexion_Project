@@ -10,6 +10,7 @@ import Settings from './pages/Settings';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import NotFound from './pages/NotFound';
+import ConnectionStatus from './components/layout/ConnectionStatus';
 
 function App() {
   const { isAuthenticated, initialize } = useAuthStore();
@@ -33,6 +34,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
+      <ConnectionStatus />
     </Router>
   );
 }
